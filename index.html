@@ -1,318 +1,359 @@
 <!DOCTYPE html>
-<html data-bs-theme="light" lang="en">
-
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Swift Go</title>
-  <!-- Preload critical CSS -->
-  <link rel="preload" href="SwiftDriveAssets/bootstrap/css/bootstrap.min.css" as="style" />
-  <!-- Preload critical JavaScript -->
-  <link rel="preload" href="SwiftDriveAssets/bootstrap/js/bootstrap.min.js" as="script" />
-  <link rel="preload" href="SwiftDriveAssets/js/aos.min.js" as="script" />
-  <!-- Preload font -->
-  <link rel="preload"
-    href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&display=swap"
-    as="style" />
-  <!-- Preload images -->
-  <link rel="preload" href="SwiftDriveAssets/img/blob.svg" as="image" />
-  <link rel="preload" href="SwiftDriveAssets/img/phone-screen.webp" as="image" />
-  <link rel="preload" href="SwiftDriveAssets/img/b1.webp" as="image" />
-  <link rel="preload" href="SwiftDriveAssets/img/b2.webp" as="image" />
-  <link rel="preload" href="SwiftDriveAssets/img/b3.webp" as="image" />
-  <link rel="preload" href="SwiftDriveAssets/img/b4.webp" as="image" />
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="SwiftDriveAssets/bootstrap/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="SwiftDriveAssets/fonts/font-awesome.min.css" />
-  <link rel="stylesheet" href="SwiftDriveAssets/css/aos.min.css" />
-  <link rel="stylesheet" href="SwiftDriveAssets/css/Advanced-Pricing-Cards.css" />
-  <link rel="stylesheet" href="SwiftDriveAssets/css/divider-text-middle.css" />
-  <link rel="stylesheet" href="SwiftDriveAssets/css/Download-App-Section.css" />
-  <link rel="stylesheet" href="SwiftDriveAssets/css/Footer-Dark-icons.css" />
-  <link rel="stylesheet" href="SwiftDriveAssets/css/Hero-Clean-images.css" />
-  <!-- Website icon -->
-  <link rel="icon" href="SwiftDriveAssets/img/IconApp.png" type="image/png" />
-  <!-- SEO -->
-  <meta name="description" content="Swift Drive: Wherever You Need to Be" />
-  <meta name="keywords"
-    content="Swift Drive, Swift Bites, Swift Delivery, Swift Rides, Swift Drive App, Swift Drive Android, Swift Drive iOS, Swift Drive Test Mode" />
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Swift Go offers travel, dining, and delivery services in Lebanon all in one app. Enjoy convenient rides, meals, and deliveries anytime, anywhere." />
+  <meta name="keywords" content="Swift Go Lebanon, Swift Drive, Swift Rides, Swift Delivery, Swift Bites, Meal Delivery, Rideshare, Delivery Services, Lebanon App" />
   <meta name="author" content="InfiniteRealm" />
   <meta name="robots" content="index, follow" />
   <meta name="revisit-after" content="3 days" />
   <meta name="language" content="English" />
   <meta name="generator" content="InfiniteRealm" />
-</head>
+  <meta property="og:title" content="Swift Go - Your One-stop Solution for Travel, Dining, and Delivery in Lebanon" />
+  <meta property="og:description" content="Swift Go is your go-to app for convenient rides, meal deliveries, and shipping needs across Lebanon. All services, one app." />
+  <meta property="og:image" content="SwiftDriveAssets/img/IconApp.png" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="SwiftDriveAssets/img/IconApp.png" type="image/png" />
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Swift Go",
+      "url": "https://swiftgo.online",
+      "logo": "https://swiftgo.online/SwiftDriveAssets/img/IconApp.png",
+      "sameAs": ["https://www.instagram.com/swiftgo_lb/"]
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #F7F7F9;
+      color: #1A1A1A;
+      overflow-x: hidden;
+      line-height: 1.7;
+      margin: 0;
+    }
 
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 50;
+      background-color: #FFFFFF;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      padding: 1.25rem 0;
+    }
+
+    .navbar a {
+      font-weight: 500;
+      font-size: 1rem;
+      color: #2D2D2D;
+    }
+
+    .navbar a:hover {
+      color: #000000;
+    }
+
+    .navbar .logo {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: #1A1A1A;
+    }
+
+    /* Buttons */
+    .btn-black {
+      background: #000000; /* Solid black like Uber */
+      color: #FFFFFF !important; /* Ensure text is white */
+      padding: 12px 28px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s ease; /* Only shadow transition */
+    }
+
+    .btn-black:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* Subtle shadow change on hover */
+    }
+
+    /* Section Backgrounds */
+    .section-bg {
+      background: #FFFFFF;
+      border-radius: 20px;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Section Padding */
+    section {
+      padding-top: 8rem;
+      padding-bottom: 8rem;
+    }
+
+    /* Mobile Navbar */
+    @media (max-width: 767px) {
+      .navbar-links {
+        display: none;
+      }
+
+      .navbar-links.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #FFFFFF;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        padding: 1.5rem 0;
+      }
+
+      .mobile-menu {
+        display: block;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #2D2D2D;
+      }
+    }
+
+    /* Footer */
+    footer {
+      background: #1A1A1A;
+      color: #FFFFFF;
+    }
+
+    .footer-buttons a {
+      margin: 0 0.75rem;
+      font-size: 1.75rem;
+      color: #FFFFFF;
+    }
+
+    .footer-buttons a:hover {
+      color: #CCCCCC;
+    }
+
+    /* Typography */
+    h1, h2, h3 {
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      line-height: 1.2;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+    }
+
+    h3 {
+      font-size: 1.75rem;
+    }
+
+    p {
+      font-weight: 400;
+      color: #4A4A4A;
+    }
+
+    /* Images */
+    .section-image {
+      width: 100%;
+      object-fit: cover;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Hero Image (Smaller) */
+    .hero-image {
+      width: 100%;
+      max-width: 320px; /* Smaller size for the phone image */
+      object-fit: contain;
+      border-radius: 16px;
+      border: 1px solid #E5E5E5;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Pricing Cards */
+    .pricing-card {
+      background: #FFFFFF;
+      border-radius: 16px;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Highlight Text */
+    .highlight-text {
+      color: #000000;
+      font-weight: 700;
+    }
+  </style>
+</head>
 <body>
-  <nav class="navbar navbar-expand-md sticky-top py-3 navbar-dark" id="mainNav">
-    <div class="container">
-      <a class="navbar-brand d-flex align-items-center" href="/"><span>Swift Go</span></a><button
-        data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
-        <span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navcol-1">
-        <ul class="navbar-nav mx-auto">
-          <li class="nav-item"></li>
-          <li class="nav-item">
-            <a class="nav-link" href="#services">Services</a>
-          </li>
-          <li class="nav-item"></li>
-          <li class="nav-item">
-            <a class="nav-link" href="#pricing">Pricing</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://infiniteRealm.tech" target="_blank">Contacts</a>
-          </li>
-        </ul>
-        <a class="btn btn-primary shadow" role="button" href="#down">Download Now</a>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container mx-auto flex justify-between items-center px-6">
+      <a href="/" class="logo">Swift Go</a>
+      <div class="navbar-links hidden md:flex space-x-8 items-center">
+        <a href="SwiftDriveAssets/html/about.html">About us</a>
+        <a href="#services">Services</a>
+        <a href="#pricing">Pricing</a>
+        <a href="https://swiftgo.online/swiftgo-privacy-policy.html" target="_blank">Privacy Policy</a>
+        <a href="https://swiftgo.online/swiftgo-privacy.html" target="_blank">Terms</a>
       </div>
+      <a href="#down" class="btn-black font-semibold">Download Now</a>
+      <div class="mobile-menu md:hidden" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+    <div class="navbar-links md:hidden flex-col items-center">
+      <a href="SwiftDriveAssets/html/about.html">About us</a>
+      <a href="#services" class="py-2">Services</a>
+      <a href="#pricing" class="py-2">Pricing</a>
+      <a href="https://swiftgo.online/swiftgo-privacy-policy.html" target="_blank" class="py-2">Privacy Policy</a>
+      <a href="https://swiftgo.online/swiftgo-privacy.html" target="_blank" class="py-2">Terms</a>
     </div>
   </nav>
 
-  <header class="bg-dark py-5" style="margin-top: -108px">
-    <div class="container py-5" style="margin-bottom: -124px">
-      <div class="row py-5">
-        <div
-          class="col-md-6 text-center text-md-start d-flex d-sm-flex d-md-flex justify-content-center align-items-center justify-content-md-start align-items-md-center justify-content-xl-end mb-4">
-          <div style="max-width: 450px">
-            <h2 class="fw-bold"> Welcome to Swift Go – Your one-stop solution for all your on-the-go needs. </h2>
-            <p class="my-3">
-              Swift Go: Your go-to for travel, dining, and delivery. Craving a meal, need a ride, or sending a package?
-              Swift Go has you covered. More features coming soon!
-            </p>
-            <form class="d-flex justify-content-center flex-wrap justify-content-md-start flex-lg-nowrap" method="post">
-              <div class="my-2 me-2"></div>
-              <div class="my-2"></div>
-            </form>
-          </div>
-        </div>
-        <div class="col-md-6 mb-4">
-          <div class="p-5 mx-lg-5" style="
-                background: url('SwiftDriveAssets/img/blob.svg') center / contain
-                  no-repeat;
-              ">
-            <img class="rounded img-fluid shadow w-100 fit-cover" style="min-height: 300px"
-              src="SwiftDriveAssets/img/phone-screen.webp" alt="Swift Drive Phone Screen" />
-          </div>
-        </div>
+  <!-- Hero Section -->
+  <header class="bg-gray-50 text-black py-24 md:py-32">
+    <div class="container mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
+      <div class="md:w-1/2 text-center md:text-left">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">Welcome to <span class="highlight-text">Swift Go</span> – Your One-Stop Solution</h1>
+        <p class="text-lg md:text-xl mb-8 text-gray-600 leading-relaxed">Swift Go: Your go-to for travel, dining, and delivery in Lebanon. Craving a meal, need a ride, or sending a package? Swift Go has you covered. More features coming soon!</p>
+        <a href="#down" class="btn-black font-semibold">Get Started</a>
+      </div>
+      <div class="md:w-1/2 mt-10 md:mt-0 flex justify-center">
+        <img src="SwiftDriveAssets/img/phone-screen.webp" alt="Swift Go App" class="hero-image" />
       </div>
     </div>
   </header>
-  <section class="py-5">
-    <h2 id="services" class="text-uppercase fw-bold" style="text-align: center">
-      Services
-    </h2>
-    <div class="container py-4 py-xl-5">
-      <div class="row gy-4 gy-md-0">
-        <div class="col-md-6">
-          <div class="p-xl-5 m-xl-5">
-            <img class="rounded img-fluid w-100 fit-cover" style="min-height: 300px" src="SwiftDriveAssets/img/b1.webp"
-              alt="image 1" />
+
+  <!-- Services Section -->
+  <section id="services" class="py-16 bg-gray-50">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-black">Our Services</h2>
+      <div class="space-y-20">
+        <!-- Swift Drive -->
+        <div class="section-bg flex flex-col md:flex-row items-center p-8 gap-10">
+          <div class="md:w-1/2">
+            <img src="SwiftDriveAssets/img/b1.webp" alt="Swift Drive" class="section-image" />
+          </div>
+          <div class="md:w-1/2 md:pl-10 mt-6 md:mt-0">
+            <h3 class="text-2xl font-bold mb-4 text-black">Swift Drive: <span class="highlight-text">Wherever You Need to Be</span></h3>
+            <p class="text-gray-600 leading-relaxed">Swift Drive puts the power in your hands. Request a ride, hop in, and let us take you wherever you need to go. Whether it’s a quick trip across town or a journey just around the corner, Swift Drive ensures you reach your destination swiftly and seamlessly.</p>
           </div>
         </div>
-        <div class="col-md-6 d-md-flex align-items-md-center">
-          <div style="max-width: 350px">
-            <h2 class="text-uppercase fw-bold">
-
-              Swift Drive: Wherever You Need to Be
-            </h2>
-            <p class="my-3">
-
-              Swift Drive puts the power in your hands. Request a ride, hop
-              in, and let us take you wherever you need to go. Whether it's a
-              quick trip across town or a journey just around the corner,
-              Swift Drive ensures you reach your destination swiftly and
-              seamlessly.
-            </p>
+        <!-- Swift Express -->
+        <div class="section-bg flex flex-col md:flex-row-reverse items-center p-8 gap-10">
+          <div class="md:w-1/2">
+            <img src="SwiftDriveAssets/img/b3.webp" alt="Swift Express" class="section-image" />
+          </div>
+          <div class="md:w-1/2 md:pr-10 mt-6 md:mt-0">
+            <h3 class="text-2xl font-bold mb-4 text-black">Swift Express: <span class="highlight-text">Shop Your Way, Delivered Your Way</span></h3>
+            <p class="text-gray-600 leading-relaxed">Experience the freedom to shop from your favorite stores and have your items delivered to your doorstep on your schedule with Swift Express. Whether it’s clothes, gadgets, or groceries, you’re in control. Choose what you want delivered and when it suits you best.</p>
+          </div>
+        </div>
+        <!-- Swift Bites -->
+        <div class="section-bg flex flex-col md:flex-row items-center p-8 gap-10">
+          <div class="md:w-1/2">
+            <img src="SwiftDriveAssets/img/b2.webp" alt="Swift Bites" class="section-image" />
+          </div>
+          <div class="md:w-1/2 md:pl-10 mt-6 md:mt-0">
+            <h3 class="text-2xl font-bold mb-4 text-black">Swift Bites: <span class="highlight-text">Crave, Tap, Enjoy</span></h3>
+            <p class="text-gray-600 leading-relaxed">Delight in your favorite flavors without breaking the bank, courtesy of Swift Bites. Order from a variety of local eateries at affordable prices, all delivered straight to your door. Convenience meets cost-effectiveness with Swift Bites.</p>
+          </div>
+        </div>
+        <!-- Drive & Earn -->
+        <div class="section-bg flex flex-col md:flex-row-reverse items-center p-8 gap-10">
+          <div class="md:w-1/2">
+            <img src="SwiftDriveAssets/img/b4.webp" alt="Drive & Earn" class="section-image" />
+          </div>
+          <div class="md:w-1/2 md:pr-10 mt-6 md:mt-0">
+            <h3 class="text-2xl font-bold mb-4 text-black">Drive & Earn: <span class="highlight-text">Drive on Your Terms, Earn on Your Schedule</span></h3>
+            <p class="text-gray-600 leading-relaxed">Join our platform to unlock the freedom to work when you want and earn what you need. Whether you prefer delivering packages or providing rides, the choice is yours. Utilize your own vehicle or opt for a rental through our service.</p>
           </div>
         </div>
       </div>
     </div>
-
-    <div class="container py-4 py-xl-5">
-      <div class="row gy-4 gy-md-0">
-        <div
-          class="col-md-6 text-center text-md-start d-flex d-sm-flex d-md-flex justify-content-center align-items-center justify-content-md-start align-items-md-center justify-content-xl-center">
-          <div style="max-width: 350px">
-            <h2 class="text-uppercase fw-bold">
-              Shop Your Way, Delivered Your Way
-            </h2>
-            <p class="my-3">
-              Experience the freedom to shop from your favorite stores and
-              have your items delivered to your doorstep on your schedule
-              with Swift Express. Whether it's clothes, gadgets, or
-              groceries, you're in control. Choose what you want to be
-              delivered and when it suits you best. Utilize your own vehicle
-              or opt for a rental through our service. Take charge of your
-              convenience today with Swift Express.
-            </p>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="p-xl-5 m-xl-5">
-            <img class="rounded img-fluid w-100 fit-cover" style="min-height: 300px"
-              src="SwiftDriveAssets/img/b3.webp" alt="image 3 " />
-          </div>
-        </div>
-      </div>
-    </div>
-   
-    <div class="container py-4 py-xl-5">
-      <div class="row gy-4 gy-md-0">
-        <div class="col-md-6">
-          <div class="p-xl-5 m-xl-5">
-            <img class="rounded img-fluid w-100 fit-cover" style="min-height: 300px"
-              src="SwiftDriveAssets/img/b2.webp" />
-          </div>
-        </div>
-        <div class="col-md-6 d-md-flex align-items-md-center">
-          <div style="max-width: 350px">
-            <h2 class="text-uppercase fw-bold">Crave, Tap, Enjoy</h2>
-            <p class="my-3">
-              Delight in your favorite flavors without breaking the bank,
-              courtesy of Swift Bites. Order from a variety of local eateries
-              at affordable prices, all delivered straight to your door. With
-              Swift Bites, convenience meets cost-effectiveness. Whether it's
-              a quick snack or a full meal, our dedicated delivery partners
-              ensure your satisfaction while keeping costs low.
-            </p>
-          </div>
-        </div>
-      </div>
-    
-      <div class="container py-4 py-xl-5">
-        <div class="row gy-4 gy-md-0">
-          <div
-            class="col-md-6 text-center text-md-start d-flex d-sm-flex d-md-flex justify-content-center align-items-center justify-content-md-start align-items-md-center justify-content-xl-center">
-            <div style="max-width: 350px">
-              <h2 class="text-uppercase fw-bold">
-                Drive on your terms, earn on your schedule
-              </h2>
-              <p class="my-3">
-                Join our platform to unlock the freedom to work when you want
-                and earn what you need. Whether you prefer delivering packages
-                or providing rides, or even both, the choice is yours. Utilize
-                your own vehicle or opt for a rental through our service. Take
-                control of your earning potential today.
-              </p>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="p-xl-5 m-xl-5">
-              <img class="rounded img-fluid w-100 fit-cover" style="min-height: 300px" src="SwiftDriveAssets/img/b4.webp"
-                alt="image 2" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="container py-4 py-xl-5">
-        <div class="row mb-5">
-          <div class="col-md-8 col-xl-6 text-center mx-auto">
-            <h2 id="pricing">Simplified Pricing with Swift Credits</h2>
-            <p class="w-lg-50">
-              Enjoy hassle-free transactions with Swift Credits. Purchase
-              credits to streamline payments for all our services, from
-              deliveries to rides. With transparent pricing and no hidden
-              fees, Swift Credits make it easy to manage your expenses. Buy
-              credits, use them as you need, and enjoy the convenience of
-              Swift Express without any surprises. Plus, for added
-              flexibility, we also accept cash payments for your convenience.
-            </p>
-          </div>
-        </div>
-        <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 d-xl-flex">
-          <div class="col">
-            <div class="card mb-4 border-primary border-2">
-              <div class="card-body text-center p-4">
-                <h4 class="fw-bold card-subtitle">Standard </h4>
-                <h4 class="display-5 fw-bold card-title">$12</h4>
-                <p>You will get 100 Credits</p>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card border-primary border-2 mb-4">
-              <div class="card-body text-center p-4">
-                <span
-                  class="badge rounded-pill bg-primary position-absolute top-0 start-50 translate-middle text-uppercase">Most
-                  Popular</span>
-                <h4 class="fw-bold card-subtitle">Pro</h4>
-                <h4 class="display-5 fw-bold card-title">$22</h4>
-                <p>You will get 200 Credits</p>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card mb-4 border-primary border-2">
-              <div class="card-body text-center p-4">
-                <h4 class="fw-bold card-subtitle">Enterprise</h4>
-                <h4 class="display-5 fw-bold card-title">$50</h4>
-                <p>You will get 500 Credits</p>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card mb-4 border-primary border-2">
-              <div class="card-body text-center p-4">
-                <h4 class="fw-bold card-subtitle">Elite</h4>
-                <h4 class="display-5 fw-bold card-title">$95</h4>
-                <p>You will get 1000 Credits</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div style="text-align: center">
-        <h2 class="divider-style"></h2>
-      </div>
-    </div>
-    <div class="container py-4 py-xl-5">
-      <div class="row mb-5">
-        <div class="col-md-8 col-xl-6 text-center mx-auto">
-          <h2>SwiftGo: Now Launched - Android Only</h2>
-          <p class="w-lg-50">
-            We’re thrilled to announce the launch of SwiftGo on Android! With SwiftGo, you can seamlessly request rides
-            and order food from your favorite restaurants. Enjoy real-time tracking, secure payments, user ratings and
-            reviews, 24/7 customer support, and exclusive promotions. Download SwiftGo now to start exploring our
-            all-in-one ride-sharing and food delivery service. Your feedback is crucial as we work to enhance your
-            experience!
-          </p>
-
-        </div>
-      </div>
-    </div>
-    <ul style="align-items: center; justify-content: center; display: flex" id="down">
-      <a href="https://play.google.com/store/apps/details?id=com.infiniterealm.swiftgo">
-        <li>
-          <div class="download android">
-            <i class="fa fa fa-android fa-3x"></i>
-            <span class="df">Download Now</span>
-            <span class="dfn">For Android</span>
-          </div>
-      </a>
-      <a href="/SwiftDriveAssets/html/comingsoon.html">
-        <li>
-          <div class="download ios">
-            <i class="fa fa fa-apple fa-3x"></i>
-            <span class="df">Download Now</span>
-            <span class="dfn">For IOS</span>
-          </div>
-        </li>
-        </li>
-      </a>
-    </ul>
   </section>
-  <footer class="text-center bg-dark">
-    <div class="container text-white py-4 py-lg-5">
-      <p class="text-muted mb-0">Copyright © 2024 InfiniteRealm</p>
+
+  <!-- Pricing Section -->
+  <section id="pricing" class="py-16 bg-gray-50">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-black">Simplified Pricing with <span class="highlight-text">Swift Credits</span></h2>
+      <p class="text-center text-gray-600 mb-16 max-w-2xl mx-auto leading-relaxed">Enjoy hassle-free transactions with Swift Credits. Purchase credits to streamline payments for all our services, from deliveries to rides. With transparent pricing and no hidden fees, Swift Credits make it easy to manage your expenses.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div class="pricing-card p-8 text-center">
+          <h3 class="text-xl font-bold mb-3 text-black">Standard</h3>
+          <p class="text-3xl font-bold mb-4 text-black">$12</p>
+          <p class="text-gray-600">You will get 100 Credits</p>
+        </div>
+        <div class="pricing-card p-8 text-center relative">
+          <h3 class="text-xl font-bold mb-3 text-black">Pro <span class="highlight-text text-sm">(Most Popular)</span></h3>
+          <p class="text-3xl font-bold mb-4 text-black">$22</p>
+          <p class="text-gray-600">You will get 200 Credits</p>
+        </div>
+        <div class="pricing-card p-8 text-center">
+          <h3 class="text-xl font-bold mb-3 text-black">Enterprise</h3>
+          <p class="text-3xl font-bold mb-4 text-black">$50</p>
+          <p class="text-gray-600">You will get 500 Credits</p>
+        </div>
+        <div class="pricing-card p-8 text-center">
+          <h3 class="text-xl font-bold mb-3 text-black">Elite</h3>
+          <p class="text-3xl font-bold mb-4 text-black">$95</p>
+          <p class="text-gray-600">You will get 1000 Credits</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Download Section -->
+  <section id="down" class="py-16 section-bg">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6 text-black"><span class="highlight-text">SwiftGo</span>: Now Launched</h2>
+      <p class="text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed">We’re thrilled to announce the launch of SwiftGo on Android and iOS! Enjoy seamless rides and food delivery with real-time tracking, secure payments, user ratings, 24/7 support, and exclusive promotions. Download now!</p>
+      <div class="flex justify-center space-x-6">
+        <a href="https://play.google.com/store/apps/details?id=com.infiniterealm.swiftgo" class="btn-black inline-flex items-center space-x-2 font-semibold" target="_blank">
+          <i class="fab fa-android"></i>
+          <span>Android</span>
+        </a>
+        <a href="https://apps.apple.com/lb/app/swift-go/id6698877609" class="btn-black inline-flex items-center space-x-2 font-semibold" target="_blank">
+          <i class="fab fa-apple"></i>
+          <span>iOS</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-10">
+    <div class="container mx-auto px-6 text-center">
+      <p class="text-white text-sm mb-4">Copyright © 2024 InfiniteRealm</p>
+      <div class="footer-buttons">
+        <a href="https://play.google.com/store/apps/details?id=com.infiniterealm.swiftgo" title="Download on Android" class="text-white hover:text-gray-300"><i class="fab fa-android"></i></a>
+        <a href="https://apps.apple.com/lb/app/swift-go/id6698877609" title="Download on iOS" class="text-white hover:text-gray-300"><i class="fab fa-apple"></i></a>
+      </div>
     </div>
   </footer>
-  <script src="SwiftDriveAssets/bootstrap/js/bootstrap.min.js"></script>
-  <script src="SwiftDriveAssets/js/aos.min.js"></script>
-  <script src="SwiftDriveAssets/js/bs-init.js"></script>
-  <script src="SwiftDriveAssets/js/Advanced-Pricing-Cards-main.js"></script>
-  <script src="SwiftDriveAssets/js/bold-and-dark.js"></script>
-</body>
 
+  <!-- Scripts (Static UI, only mobile menu) -->
+  <script>
+    function toggleMenu() {
+      const menu = document.querySelector('.navbar-links.md\\:hidden');
+      menu.classList.toggle('active');
+    }
+  </script>
+</body>
 </html>

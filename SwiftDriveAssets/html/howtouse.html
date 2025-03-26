@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Use Swift Go</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- GSAP for animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <!-- Google Fonts (Inter) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="SwiftDriveAssets/img/IconApp.png" type="image/png" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #FFFFFF;
+      color: #1A1A1A;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 50;
+      background-color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      padding: 1.5rem 0;
+      transition: all 0.3s ease;
+    }
+    .navbar a {
+      font-weight: 600;
+      color: #4A4A4A;
+      transition: color 0.3s ease;
+    }
+    .navbar a:hover {
+      color: #000000;
+    }
+    .highlight-text {
+      color: #1A1A1A;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+    }
+    .step-container {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .step {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      width: 100%;
+      max-width: 900px;
+      margin-bottom: 2rem;
+    }
+    .step img {
+      width: 45%;
+      height: auto;
+      border-radius: 8px;
+      margin-right: 2rem; /* Increased distance from the line */
+    }
+    .step .text-content {
+      width: 45%;
+      padding-left: 2rem; /* Increased distance from the line */
+    }
+    .vertical-line {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background-color: #000000;
+      transform: translateX(-50%);
+      z-index: -1;
+    }
+    .step::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 1rem;
+      height: 1rem;
+      background-color: #000000;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+    }
+    .navbar-icons a {
+      margin-left: 1rem;
+      font-size: 1.5rem;
+      color: #4A4A4A;
+      transition: color 0.3s ease;
+    }
+    .navbar-icons a:hover {
+      color: #000000;
+    }
+    /* Mobile Navbar */
+    .mobile-menu {
+      display: none;
+    }
+    @media (max-width: 767px) {
+      .navbar-links {
+        display: none;
+      }
+      .navbar-links.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #FFFFFF;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        padding: 1rem 0;
+      }
+      .mobile-menu {
+        display: block;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #4A4A4A;
+      }
+      .step {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .step img, .step .text-content {
+        width: 100%;
+        padding-left: 0;
+        margin-right: 0;
+      }
+      .step .text-content {
+        margin-top: 1rem;
+      }
+      .vertical-line {
+        display: none;
+      }
+      .step::after {
+        display: none;
+      }
+    }
+    /* Footer */
+    footer {
+      background-color: #000000;
+      color: #FFFFFF;
+    }
+    .footer-buttons a {
+      margin: 0 0.5rem;
+      font-size: 1.75rem;
+    }
+    /* Suggestions */
+    .suggestion-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      border-radius: 10px;
+    }
+    .suggestion-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container mx-auto flex justify-between items-center px-6">
+      <a href="/" class="text-2xl font-bold text-black">Swift Go</a>
+      <div class="navbar-links hidden md:flex space-x-8 items-center">
+        <a href="about.html#about" class="py-2">About</a>
+        <a href="about.html#team" class="py-2">Team</a>
+        <a href="about.html#sustainability" class="py-2">Sustainability</a>
+        <a href="about.html#offerings" class="py-2">Offerings</a>
+        <a href="about.html#safety" class="py-2">Safety</a>
+      </div>
+      <div class="mobile-menu md:hidden" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+    <div class="navbar-links md:hidden flex-col items-center">
+        <a href="about.html#about" class="py-2">About</a>
+        <a href="about.html#team" class="py-2">Team</a>
+        <a href="about.html#sustainability" class="py-2">Sustainability</a>
+        <a href="about.html#offerings" class="py-2">Offerings</a>
+        <a href="about.html#safety" class="py-2">Safety</a>
+    </div>
+  </nav>
+
+  <!-- Top Section Centered Under Navbar -->
+  <div class="container mx-auto px-6 pt-24 pb-8 text-center">
+    <h1 class="text-4xl md:text-5xl font-bold mb-8 highlight-text">A Quick Guide to Swift Go</h1>
+    <p class="text-gray-600 mb-12 max-w-2xl mx-auto">
+      Here’s how the Swift Go app connects riders, drivers, and services on demand, step by step:
+    </p>
+  </div>
+
+  <!-- How to Use Section -->
+  <section id="how-to-use" class="container mx-auto px-6 py-8">
+    <div class="step-container">
+      <div class="vertical-line"></div>
+
+      <!-- Step 1 -->
+      <div class="step relative">
+        <img src="https://images.unsplash.com/photo-1522125670776-3c7abb882bc2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Step 1" />
+        <div class="text-content">
+          <h2 class="text-xl font-bold mb-2">1. Getting Started</h2>
+          <p class="text-gray-600">
+            Open the Swift Go app, enter your destination in the “Where to?” box, review ride options, select your preference, and confirm your pickup location.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="step relative">
+        <img src="https://images.unsplash.com/photo-1539787200876-3c033a7bebcd?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Step 2" />
+        <div class="text-content">
+          <h2 class="text-xl font-bold mb-2">2. Matching Rider and Driver</h2>
+          <p class="text-gray-600">
+            A nearby driver accepts your request. You’ll get a notification as they approach your location.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="step relative">
+        <img src="https://images.unsplash.com/photo-1602604900209-e712d9ca7173?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHViZXJ8ZW58MHx8MHx8fDA%3D" alt="Step 3" />
+        <div class="text-content">
+          <h2 class="text-xl font-bold mb-2">3. Picking Up</h2>
+          <p class="text-gray-600">
+            The driver and you verify each other’s names and destination. Then, the ride begins.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="step relative">
+        <img src="https://images.unsplash.com/photo-1625959518941-99decaa7d878?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHViZXJ8ZW58MHx8MHx8fDA%3D" alt="Step 4" />
+        <div class="text-content">
+          <h2 class="text-xl font-bold mb-2">4. Taking the Trip</h2>
+          <p class="text-gray-600">
+            The app provides turn-by-turn directions to guide the driver to your destination.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="step relative">
+        <img src="https://images.unsplash.com/photo-1633613286991-611fe299c4be?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Step 5" />
+        <div class="text-content">
+          <h2 class="text-xl font-bold mb-2">5. Leaving Ratings and Reviews</h2>
+          <p class="text-gray-600">
+            After the trip, you and the driver can rate each other from 1 to 5 stars. You can also tip directly in the app and leave compliments for your driver.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Suggestions Section -->
+    <h2 class="text-3xl md:text-4xl font-bold mt-12 mb-8 highlight-text">Explore More with Swift Go</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="suggestion-card p-6 bg-white text-left">
+        <img src="https://images.pexels.com/photos/439391/pexels-photo-439391.jpeg" alt="Courier" class="w-full rounded-lg mb-4" />
+        <h2 class="text-xl font-bold mb-2">Courier</h2>
+        <p class="text-gray-600">Swift Go makes same-day item delivery easier than ever.</p>
+      </div>
+      <div class="suggestion-card p-6 bg-white text-left">
+        <img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg" alt="Reserve" class="w-full rounded-lg mb-4" />
+        <h2 class="text-xl font-bold mb-2">Reserve</h2>
+        <p class="text-gray-600">Book your ride in advance and relax on the day of your trip.</p>
+      </div>
+      <div class="suggestion-card p-6 bg-white text-left">
+        <img src="https://cdn.britannica.com/02/178002-050-BFCB544B/ruins-Tyre-Lebanon.jpg" alt="Ride" class="w-full rounded-lg mb-4" />
+        <h2 class="text-xl font-bold mb-2">Ride</h2>
+        <p class="text-gray-600">Go anywhere with Swift Go. Request a ride, hop in, and go.</p>
+      </div>
+    </div>
+  </section>
+
+  <br>
+    <br>
+    <br>
+
+  <!-- Footer -->
+  <footer class="py-8">
+    <div class="container mx-auto px-6 text-center">
+      <p class="text-white text-sm mb-4">© 2024 InfiniteRealm. All rights reserved.</p>
+      <div class="footer-buttons">
+        <a href="https://play.google.com/store/apps/details?id=com.infiniterealm.swiftgo" title="Download on Android" class="text-white hover:text-gray-300"><i class="fab fa-android"></i></a>
+        <a href="https://apps.apple.com/lb/app/swift-go/id6698877609" title="Download on iOS" class="text-white hover:text-gray-300"><i class="fab fa-apple"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Animation and Scripts -->
+  <script>
+    window.addEventListener('scroll', () => {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.style.padding = '1rem 0';
+        navbar.classList.add('navbar-scrolled');
+      } else {
+        navbar.style.padding = '1.5rem 0';
+        navbar.classList.remove('navbar-scrolled');
+      }
+    });
+
+    function toggleMenu() {
+      const menu = document.querySelector('.navbar-links.md\\:hidden');
+      menu.classList.toggle('active');
+    }
+
+    gsap.from('.step', { opacity: 0, y: 50, duration: 1, stagger: 0.2, scrollTrigger: { trigger: '#how-to-use', start: 'top 80%' } });
+    gsap.from('.suggestion-card', { opacity: 0, y: 50, duration: 1, stagger: 0.2, scrollTrigger: { trigger: '.suggestion-card', start: 'top 80%' } });
+  </script>
+</body>
+</html>

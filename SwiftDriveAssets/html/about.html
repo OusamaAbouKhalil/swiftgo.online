@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Swift Go</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <!-- Google Fonts (Inter) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="icon" href="SwiftDriveAssets/img/IconApp.png" type="image/png" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #F5F5F5;
+      color: #1A1A1A;
+      overflow-x: hidden;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 50;
+      background-color: #FFFFFF;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      padding: 1rem 0;
+    }
+
+    .navbar a {
+      font-weight: 500;
+      font-size: 1rem;
+      color: #333333;
+    }
+
+    .navbar a:hover {
+      color: #000000;
+    }
+
+    .navbar .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #000000;
+    }
+
+    /* Buttons */
+    .btn-black {
+      background-color: #000000;
+      color: #FFFFFF;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Highlight Text */
+    .highlight-text {
+      color: #FFFFFF;
+      font-weight: 800;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+      letter-spacing: -0.02em;
+    }
+
+    /* Section Backgrounds */
+    .section-bg {
+      background-color: #FFFFFF;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    }
+
+    /* Team Cards */
+    .team-card {
+      background-color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    /* Background with Overlay */
+    .tire-bg {
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .tire-bg::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1;
+    }
+
+    .tire-bg>* {
+      position: relative;
+      z-index: 2;
+    }
+
+    .tire-bg p {
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+      color: #E0E0E0;
+    }
+
+    /* Section Padding */
+    section {
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+
+    /* Navbar Icons */
+    .navbar-icons a {
+      margin-left: 1rem;
+      font-size: 1.5rem;
+      color: #333333;
+    }
+
+    .navbar-icons a:hover {
+      color: #000000;
+    }
+
+    /* Popup */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      z-index: 100;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .popup-content {
+      background-color: #FFFFFF;
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 600px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    .popup-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      color: #000000;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .popup-close:hover {
+      color: #FF0000;
+    }
+
+    /* Mobile Navbar */
+    @media (max-width: 767px) {
+      .navbar-links {
+        display: none;
+      }
+
+      .navbar-links.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #FFFFFF;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        padding: 1rem 0;
+      }
+
+      .mobile-menu {
+        display: block;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #333333;
+      }
+    }
+
+    /* Footer */
+    footer {
+      background-color: #000000;
+      color: #FFFFFF;
+    }
+
+    .footer-buttons a {
+      margin: 0 0.5rem;
+      font-size: 1.75rem;
+    }
+
+    .footer-buttons a:hover {
+      color: #CCCCCC;
+    }
+
+    /* Typography */
+    h2 {
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      font-weight: 400;
+      color: #4A4A4A;
+    }
+
+    /* Images */
+    .section-image {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    /* Team Images */
+    .team-image {
+      width: 96px;
+      height: 96px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2px solid #E5E5E5;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container mx-auto flex justify-between items-center px-6">
+      <a href="/" class="logo">Swift Go</a>
+      <div class="navbar-links hidden md:flex space-x-8 items-center">
+        <a href="/">Home</a>
+        <a href="#about" class="py-2">About</a>
+        <a href="#team" class="py-2">Team</a>
+        <a href="#sustainability" class="py-2">Sustainability</a>
+        <a href="#offerings" class="py-2">Offerings</a>
+        <a href="#safety" class="py-2">Safety</a>
+      </div>
+      <div class="mobile-menu md:hidden" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+    <div class="navbar-links md:hidden flex-col items-center">
+      <a href="/">Home</a>
+      <a href="#about" class="py-2">About</a>
+      <a href="#team" class="py-2">Team</a>
+      <a href="#sustainability" class="py-2">Sustainability</a>
+      <a href="#offerings" class="py-2">Offerings</a>
+      <a href="#safety" class="py-2">Safety</a>
+    </div>
+  </nav>
+
+  <!-- About Us Section -->
+  <section id="about" class="tire-bg text-white"
+    style="background-image: url('https://cdn.britannica.com/03/178003-050-5BED23EA/road-ruins-Lebanon-Tyre.jpg');">
+    <div class="container mx-auto px-6 py-12">
+      <div class="flex flex-col md:flex-row items-center">
+        <div class="md:w-1/2 mb-6 md:mb-0">
+          <img
+            src="https://cdn.britannica.com/03/178003-050-5BED23EA/road-ruins-Lebanon-Tyre.jpg"
+            alt="Swift Go Vision" class="section-image" />
+        </div>
+        <div class="md:w-1/2 md:pl-8 text-center md:text-left">
+          <h2 class="text-4xl md:text-5xl font-bold mb-4 highlight-text">We Are Swift Go</h2>
+          <p class="text-xl font-medium mb-4 text-gray-200">The Innovators of Movement</p>
+          <p class="text-gray-200 max-w-md mx-auto md:mx-0">
+            Launched in 2025, Swift Go is a startup with a bold mission: to connect Lebanon and beyond by making
+            movement effortless. We’re relentless in simplifying lives with every tap.
+          </p>
+          <button class="btn-black mt-6" onclick="openPopup('mission')">Our Mission</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Story Section -->
+  <section id="story" class="section-bg py-12">
+    <div class="container mx-auto px-6">
+      <div class="flex flex-col md:flex-row-reverse items-center">
+        <div class="md:w-1/2 mb-6 md:mb-0">
+          <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg" alt="Our Story"
+            class="section-image" />
+        </div>
+        <div class="md:w-1/2 md:pr-8 text-center md:text-left">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4 text-black">Our Story</h2>
+          <p class="text-gray-600 max-w-md mx-auto md:mx-0">
+            Swift Go began in 2025, born from a vision to blend tech with Lebanon’s daily rhythm. We’re a startup
+            redefining movement—accessible, safe, and sustainable.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section id="team" class="py-12 bg-gray-50">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 text-black">Our Team</h2>
+      <p class="text-center text-gray-600 mb-8 max-w-xl mx-auto">Meet the pioneers shaping Swift Go’s future.</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="team-card p-6 text-center">
+          <img src="/SwiftDriveAssets/img/ousama.png" alt="Ousama Abou Khalil" class="team-image mx-auto mb-3" />
+          <h3 class="text-lg font-bold text-black">Ousama Abou Khalil</h3>
+          <p class="text-gray-600 mb-3">Founder & CEO</p>
+          <button class="btn-black text-sm" onclick="openPopup('ousama')">Learn More</button>
+        </div>
+        <div class="team-card p-6 text-center">
+          <img
+            src="https://imgs.search.brave.com/Ebuxi0b8jwaQ51-HfbHL2anwkV68b-bt3nIp-gpYSYM/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTAx/Njc0NDAwNC92ZWN0/b3IvcHJvZmlsZS1w/bGFjZWhvbGRlci1p/bWFnZS1ncmF5LXNp/bGhvdWV0dGUtbm8t/cGhvdG8uanBnP3M9/NjEyeDYxMiZ3PTAm/az0yMCZjPW1CNkE5/aWRodEV0c0ZYcGhz/MVdWd1dfaVBCdDM3/UzJrSnA2VnBQaEZl/b0E9"
+            alt="Mohammad Ali Ammoun" class="team-image mx-auto mb-3" />
+          <h3 class="text-lg font-bold text-black">Mohammad Ali Ammoun</h3>
+          <p class="text-gray-600 mb-3">PR & CFO</p>
+          <button class="btn-black text-sm" onclick="openPopup('mohammad')">Learn More</button>
+        </div>
+        <div class="team-card p-6 text-center">
+          <img src="/SwiftDriveAssets/img/2.webp" alt="Hassan Abou Khalil" class="team-image mx-auto mb-3" />
+          <h3 class="text-lg font-bold text-black">Hassan Abou Khalil</h3>
+          <p class="text-gray-600 mb-3">COO</p>
+          <button class="btn-black text-sm" onclick="openPopup('hassan')">Learn More</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sustainability Section -->
+  <section id="sustainability" class="tire-bg text-white"
+    style="background-image: url('https://www.the961.com/wp-content/uploads/2020/03/1eac792932d0b14b99a4d374e25468cfa0e7226a_1200x630.jpg');">
+    <div class="container mx-auto px-6 py-12">
+      <div class="flex flex-col md:flex-row items-center">
+        <div class="md:w-1/2 mb-6 md:mb-0">
+          <img src="https://www.the961.com/wp-content/uploads/2020/03/1eac792932d0b14b99a4d374e25468cfa0e7226a_1200x630.jpg" alt="Sustainability"
+            class="section-image" />
+        </div>
+        <div class="md:w-1/2 md:pl-8 text-center md:text-left">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4 highlight-text">Sustainability</h2>
+          <p class="text-gray-200 max-w-md mx-auto md:mx-0">
+            Starting in 2025, Swift Go integrates eco-friendly solutions—electric vehicles and sustainable logistics—to
+            ensure movement doesn’t harm tomorrow’s planet.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Offerings Section -->
+  <section id="offerings" class="section-bg py-12">
+    <div class="container mx-auto px-6">
+      <div class="flex flex-col md:flex-row-reverse items-center">
+        <div class="md:w-1/2 mb-6 md:mb-0">
+          <img
+            src="https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?q=80&w=2076&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Offerings" class="section-image" />
+        </div>
+        <div class="md:w-1/2 md:pr-8 text-center md:text-left">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4 text-black">Our Offerings</h2>
+          <p class="text-gray-600 max-w-md mx-auto md:mx-0">
+            From rides to deliveries, Swift Go powers your day with innovative services, redefining how Lebanon moves
+            since 2025.
+          </p>
+          <a href="howtouse.html" class="btn-black mt-4 inline-block">How It Works</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Safety Section -->
+  <section id="safety" class="tire-bg text-white"
+    style="background-image: url('https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg');">
+    <div class="container mx-auto px-6 py-12">
+      <div class="flex flex-col md:flex-row items-center">
+        <div class="md:w-1/2 mb-6 md:mb-0">
+          <img src="https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg" alt="Safety"
+            class="section-image" />
+        </div>
+        <div class="md:w-1/2 md:pl-8 text-center md:text-left">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4 highlight-text">Safety First</h2>
+          <p class="text-gray-200 max-w-md mx-auto md:mx-0">
+            Since 2025, safety is Swift Go’s foundation—real-time tracking, guidelines, and 24/7 support for every
+            journey.
+          </p>
+          <button class="btn-black mt-4" onclick="openPopup('safety')">Safety Features</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popups -->
+  <div id="mission-popup" class="popup">
+    <div class="popup-content">
+      <span class="popup-close" onclick="closePopup('mission')">×</span>
+      <h3 class="text-2xl font-bold text-black mb-4">Our Mission</h3>
+      <p class="text-gray-600 leading-relaxed">
+        We are Swift Go. The dreamers. The kind of people who are relentless about our mission to help Lebanon go
+        anywhere and get anything, starting in 2025. Movement is what we ignite. It’s our spark. It flows through our
+        veins. It’s what gets us up each morning, pushing us to reimagine how we can move better. For you. For every
+        corner you want to reach. For every need you want to meet. Across Lebanon. In real time. At the speed of now.
+      </p>
+      <p class="text-gray-600 mt-4 leading-relaxed">
+        We’re a startup connecting the physical and digital worlds to make movement happen with a tap. We believe in a
+        Lebanon where movement is accessible—so you can move and earn safely, sustainably, and freely, no matter who you
+        are. We’re just beginning, and we’ll stumble, but every step makes us sharper, stronger, and more committed to
+        our community, partners, and cities.
+      </p>
+    </div>
+  </div>
+
+  <div id="safety-popup" class="popup">
+    <div class="popup-content">
+      <span class="popup-close" onclick="closePopup('safety')">×</span>
+      <h3 class="text-2xl font-bold text-black mb-4">Safety Features</h3>
+      <p class="text-gray-600 leading-relaxed">
+        <strong>Our Commitment to Safety:</strong> We want you to move freely, make the most of your time, and stay
+        connected to what matters most. That’s why, since 2025, we’re committed to safety—from pioneering new standards
+        to building technology that reduces risks.
+      </p>
+      <p class="text-gray-600 mt-4 leading-relaxed">
+        <strong>How Safety is Built In:</strong> Tap for emergency help. Share your trip with loved ones. Our app puts
+        peace of mind at your fingertips. Millions in our community follow shared Guidelines, holding each other
+        accountable. A dedicated team is here 24/7—reach them anytime with questions or concerns.
+      </p>
+    </div>
+  </div>
+
+  <div id="ousama-popup" class="popup">
+    <div class="popup-content">
+      <span class="popup-close" onclick="closePopup('ousama')">×</span>
+      <h3 class="text-2xl font-bold text-black mb-4">A Letter from Ousama Abou Khalil</h3>
+      <p class="text-gray-600 leading-relaxed">
+        Growing up in Lebanon, I always dreamed of building something that could make life easier for people here. The
+        idea for Swift Go came to me one rainy evening when I was stuck waiting for a ride, watching delivery drivers
+        zip by with food I couldn’t order because I didn’t have the right app. Why couldn’t it all be simpler? That’s
+        when I decided to roll up my sleeves and code a solution. As a software engineer, I’ve spent countless nights
+        debugging lines of code, fueled by coffee and a vision of a seamless platform. From the first prototype—barely
+        functional but full of promise—to the app we have today, it’s been a journey of persistence. I remember the
+        first time a user thanked us for getting them home safely; it made every late night worth it. My goal is to keep
+        pushing the boundaries of what Swift Go can do, blending technology with the heartbeat of Lebanon.
+      </p>
+      <p class="text-gray-600 mt-4 italic">Best regards,</p>
+      <p class="text-black font-semibold">Ousama Abou Khalil</p>
+    </div>
+  </div>
+
+  <div id="mohammad-popup" class="popup">
+    <div class="popup-content">
+      <span class="popup-close" onclick="closePopup('mohammad')">×</span>
+      <h3 class="text-2xl font-bold text-black mb-4">A Letter from Mohammad Ali Ammoun</h3>
+      <p class="text-gray-600 leading-relaxed">
+        My journey with Swift Go started over a casual coffee chat with Ousama, where he pitched this wild idea of an
+        all-in-one app. I was hooked—not just by the concept, but by the potential to connect with people. As PR and
+        CFO, my days are a mix of storytelling and number-crunching. I’ll never forget the first press release we sent
+        out; my hands were shaking as I hit ‘send,’ hoping someone would care. They did. Soon, we were fielding calls
+        from partners eager to join us. One of my proudest moments was securing a deal with a local restaurant chain—it
+        felt like a win for the whole team. I see my role as building bridges: between Swift Go and its users, between
+        our vision and the resources to make it happen. Every handshake, every budget I balance, is a step toward making
+        this dream sustainable and real.
+      </p>
+      <p class="text-gray-600 mt-4 italic">Warmest regards,</p>
+      <p class="text-black font-semibold">Mohammad Ali Ammoun</p>
+    </div>
+  </div>
+
+  <div id="hassan-popup" class="popup">
+    <div class="popup-content">
+      <span class="popup-close" onclick="closePopup('hassan')">×</span>
+      <h3 class="text-2xl font-bold text-black mb-4">A Letter from Hassan Abou Khalil</h3>
+      <p class="text-gray-600 leading-relaxed">
+        Operations are where ideas meet reality, and that’s where I thrive. I joined Swift Go because I saw a chance to
+        tackle the everyday logistics challenges in Lebanon head-on. I still remember our first big test: a day when we
+        had 23 rides and 26 deliveries scheduled at once. It was intense—coordinating drivers, keeping everything on
+        track, and making sure we delivered on time. Since then, I’ve worked tirelessly to fine-tune our operations,
+        ensuring drivers are where they need to be, deliveries arrive hot, and the app runs like a well-oiled machine.
+        One time, a customer called to say their meal arrived just in time for a family celebration; that’s the kind of
+        impact I live for. My story with Swift Go is about turning challenges into clockwork, making sure every detail
+        comes together perfectly for you.
+      </p>
+      <p class="text-gray-600 mt-4 italic">Sincerely,</p>
+      <p class="text-black font-semibold">Hassan Abou Khalil</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="py-8">
+    <div class="container mx-auto px-6 text-center">
+      <p class="text-white text-sm mb-4">© 2025 Swift Go. All rights reserved.</p>
+      <div class="footer-buttons">
+        <a href="https://play.google.com/store/apps/details?id=com.infiniterealm.swiftgo" title="Download on Android"
+          class="text-white hover:text-gray-300"><i class="fab fa-android"></i></a>
+        <a href="https://apps.apple.com/lb/app/swift-go/id6698877609" title="Download on iOS"
+          class="text-white hover:text-gray-300"><i class="fab fa-apple"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Popup Scripts -->
+  <script>
+    function toggleMenu() {
+      const menu = document.querySelector('.navbar-links.md\\:hidden');
+      menu.classList.toggle('active');
+    }
+
+    function openPopup(id) {
+      document.getElementById(`${id}-popup`).style.display = 'flex';
+    }
+
+    function closePopup(id) {
+      document.getElementById(`${id}-popup`).style.display = 'none';
+    }
+  </script>
+</body>
+
+</html>
